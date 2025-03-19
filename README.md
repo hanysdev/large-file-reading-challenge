@@ -11,14 +11,10 @@ We needed to efficiently read large files, process them, and provide a simple AP
 - **API Endpoint**: The REST API provides an endpoint to fetch the average temperature for a specific city, with the city field hidden in the response.
 
 ## Steps to Run the Project
-1. Navigate to the project directory:
-   ```sh
-   cd ./recruitment-challenges/large-file-reading-challenge/
-   ```
-2. Build the project using Gradle.
-3. Configure the file path in the `application.yml` file to point to your CSV file.
-4. Run the application using `./gradlew bootRun`.
-5. Access the API at `http://localhost:8080/api/v1/temperature/average/{city}`.
+1. Build the project using Gradle. `./gradlew clean build`.
+2. Configure the file path in the `application.yml` file to point to your CSV file.
+3. Run the application using `./gradlew bootRun`.
+4. Access the API at `http://localhost:8080/api/v1/temperature/average/{city}`.
 
 ## Test Coverage
 - **Unit Tests**: We wrote unit tests for the core services using `JUnit` and `Mockito` to mock external dependencies.

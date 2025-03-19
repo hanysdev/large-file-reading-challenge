@@ -2,8 +2,9 @@ package pl.hanysdev.largefilereader.service;
 
 import jakarta.annotation.PostConstruct;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -33,7 +34,15 @@ public class TemperatureService {
 
     return allYearlyTemperatures.stream()
         .filter(dto -> dto.getCity().equalsIgnoreCase(city))
-        .collect(Collectors.toList());
+        .peek(
+            dto -> {
+              double roundedTemp =
+                  new BigDecimal(dto.getAverageTemperature())
+                      .setScale(2, RoundingMode.HALF_UP)
+                      .doubleValue();
+              dto.setAverageTemperature(roundedTemp);
+            })
+        .toList();
   }
 
   @PostConstruct
