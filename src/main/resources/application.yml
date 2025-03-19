@@ -1,0 +1,4 @@
+temperature:
+  file-path: classpath:example_file.csv
+api:
+  version: v1
